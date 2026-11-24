@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Studio Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: professional software studio, calm, precise, trustworthy
+   IDEA: a product showroom: every page opens on a working product, like a SaaS vendor's site
+   PICTURE: live CRM pipeline, live help-desk inbox, layered app windows, device frames
+   COLOUR and TYPE: white ground, ink #0f172a, one blue #1f4fd8, slate greys; Manrope + Inter
+   LAYOUT: sticky nav with CTA, hero with product window, case-study rows, multi-column footer */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#0d1117);--bg2:light-dark(#f6f8fb,#151a22);--card:light-dark(#ffffff,#171c25);
+--ink:light-dark(#0f172a,#e8ecf3);--mute:light-dark(#526075,#9aa6b8);--line:light-dark(#e4e8ef,#262d39);
+--acc:light-dark(#1f4fd8,#5b8cff);--acc2:light-dark(#0e7490,#38bdf8);--ok:light-dark(#0f8a4f,#43c98a);--warn:light-dark(#b86e00,#f0b14a);
+--sh:0 1px 2px rgb(15 23 42/.05),0 12px 32px -12px rgb(15 23 42/.18)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Manrope,Inter,sans-serif;line-height:1.08;margin:0 0 .5em;text-wrap:balance}
+h1{font-size:clamp(34px,4.6vw,50px);font-weight:800;letter-spacing:-.025em}
+h2{font-size:clamp(26px,3.2vw,34px);font-weight:700;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:600}
+p{margin:0 0 1em;max-width:62ch}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--acc2);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+.alt{background:var(--bg2)}
+.dark{background:#0f172a;color:#f1f5f9}.dark .mute{color:#aab6c8}.dark .btn{background:transparent;color:#fff;border-color:#334155}.dark .btn.p{background:#fff;color:#0f172a;border-color:#fff}
+.mute{color:var(--mute)}
+.small{font-size:13px}
+.win img{display:block;width:100%;height:auto}
+.stack3 .win img{aspect-ratio:16/10;object-fit:cover;object-position:top left}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px;margin-top:22px}
+.gallery figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--card);box-shadow:var(--sh);transition:transform .3s}
+.gallery figure:hover{transform:translateY(-4px)}
+.gallery img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.gallery figcaption{padding:14px 16px;display:grid;gap:2px}.gallery figcaption b{font:700 16px Manrope,sans-serif}
+.shot{margin-top:22px}
+/* nav */
+nav.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:12px;padding:10px max(5vw,16px);flex-wrap:wrap}
+.brand{font:800 19px Manrope,sans-serif;text-decoration:none;display:flex;align-items:center;gap:8px;margin-right:auto}
+.brand i{width:30px;height:30px;border-radius:8px;background:var(--acc);display:grid;place-items:center;color:#fff;font-style:normal;font-size:14px}
+.links{display:flex;gap:4px;flex-wrap:wrap}
+.links a{text-decoration:none;padding:10px 14px;border-radius:10px;font-weight:500;font-size:15px;min-height:44px;display:flex;align-items:center}
+.links a:hover{background:var(--bg2)}
+.links a[aria-current=page]{color:var(--acc);background:color-mix(in srgb,var(--acc) 9%,transparent)}
+.navcta{margin-left:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:10px;transition:background .2s,transform .2s;border:1px solid var(--line);background:var(--card);font-weight:600;text-decoration:none}
+.btn.p{background:var(--acc);border-color:var(--acc);color:#fff}
+.btn.k{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.btn:hover{filter:brightness(1.08)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,56px);align-items:center}
+.hero.rev{grid-template-columns:minmax(0,1fr)}
+.kick{display:inline-flex;gap:8px;align-items:center;font-size:13px;font-weight:600;color:var(--acc);margin-bottom:14px;padding:5px 12px;border-radius:999px;background:color-mix(in srgb,var(--acc) 9%,transparent)}
+.kick b{width:6px;height:6px;border-radius:50%;background:var(--acc)}
+.trust{display:flex;gap:8px 22px;flex-wrap:wrap;margin-top:26px;padding-top:18px;border-top:1px solid var(--line);font-size:14px;color:var(--mute)}
+.trust b{color:var(--ink);font-weight:600}
+.lead{font-size:17px;color:var(--mute)}
+/* window chrome */
+.win{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh);overflow:hidden}
+.bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--bg2);font-size:13px;color:var(--mute)}
+.bar s{width:11px;height:11px;border-radius:50%;background:#ff5f57;text-decoration:none}.bar s+s{background:#febc2e}.bar s+s+s{background:#28c840}
+.bar span{margin-left:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* stacked showcase */
+.stack3{position:relative;min-height:440px}
+.stack3 .win{position:absolute;width:78%;transition:transform .5s}
+.stack3 .w1{left:0;top:0}
+.stack3 .w2{right:0;top:70px;z-index:2}
+.stack3 .w3{left:10%;top:200px;z-index:3}
+.stack3:hover .w1{transform:translateY(-6px)}
+.stack3:hover .w2{transform:translateY(-3px)}
+.mini{padding:14px;display:grid;gap:8px;font-size:13px}
+.sk{height:10px;border-radius:6px;background:var(--line)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--bg2);border:1px solid var(--line);white-space:nowrap}
+.chip.o{background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--acc);border-color:transparent}
+.chip.b{background:color-mix(in srgb,var(--acc2) 14%,transparent);color:var(--acc2);border-color:transparent}
+.chip.g{background:color-mix(in srgb,var(--ok) 14%,transparent);color:var(--ok);border-color:transparent}
+.chip.y{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn);border-color:transparent}
+/* cards */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:6px}
+.card .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--bg2);margin-bottom:8px}
+.card .ic{background:color-mix(in srgb,var(--acc) 9%,transparent)}.card .ic svg{width:22px;height:22px;stroke:var(--acc);fill:none;stroke-width:2}
+.card a.more{margin-top:auto;font-weight:600;color:var(--acc);text-decoration:none;padding-top:10px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:14px}
+.stat{padding:16px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.stat b{display:block;font:700 clamp(22px,3vw,30px) Manrope,sans-serif;white-space:nowrap}
+.stat span{font-size:13px;color:var(--mute)}
+/* web page */
+.devices{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,1fr);gap:18px;align-items:center}
+.site{--t:#1f4fd8;padding:0}
+.site .sh{padding:28px;background:linear-gradient(135deg,var(--t),color-mix(in srgb,var(--t) 55%,#000));color:#fff;min-height:220px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
+.site .sh h3{font-size:clamp(20px,2.6vw,28px);margin:0}
+.site .sb{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:16px}
+.site .sb div{height:70px;border-radius:10px;background:var(--bg2)}
+.phone{border:8px solid #121212;border-radius:30px;overflow:hidden;background:var(--card);box-shadow:var(--sh);aspect-ratio:9/18}
+.phone .sh{min-height:55%;padding:16px}.phone .sh h3{font-size:16px}
+.picker{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.sw{width:44px;height:44px;border-radius:50%;border:3px solid var(--bg);outline:1px solid var(--line)}
+.sw[aria-pressed=true]{outline:3px solid var(--ink)}
+.process{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:14px;counter-reset:s}
+.process div{padding:18px;border-left:3px solid var(--acc);background:var(--card);border-radius:0 12px 12px 0}
+.meter{height:10px;border-radius:6px;background:var(--line);overflow:hidden}.meter i{display:block;height:100%;background:var(--acc2);border-radius:6px}
+.mrow{display:grid;grid-template-columns:9em minmax(0,1fr) 3em;gap:12px;align-items:center;font-size:14px;margin:10px 0}
+.mrow em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums}
+/* CRM */
+.tools{display:flex;gap:10px;flex-wrap:wrap;padding:12px 14px;border-bottom:1px solid var(--line)}
+.tools input,.tools select{min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font-size:16px}
+.tools input{flex:1 1 160px}
+.board{display:grid;grid-template-columns:repeat(4,minmax(220px,1fr));gap:12px;padding:14px;overflow-x:auto}
+.col{background:var(--bg2);border-radius:12px;padding:10px;min-height:300px;display:flex;flex-direction:column;gap:8px}
+.col.over{outline:2px dashed var(--acc2)}
+.col h4{margin:0 0 4px;font:600 14px Manrope,sans-serif;display:flex;justify-content:space-between;gap:6px}
+.col h4 span{color:var(--mute);font-weight:500;white-space:nowrap}
+.deal{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:grab;font-size:14px;display:grid;gap:4px}
+.deal:active{cursor:grabbing}
+.deal .t{display:flex;justify-content:space-between;gap:8px;font-weight:600}
+.deal .t em{font-style:normal;white-space:nowrap;font-variant-numeric:tabular-nums}
+.deal .f{display:flex;justify-content:space-between;align-items:center;gap:6px;color:var(--mute);font-size:12px}
+.deal .f button{border:0;background:var(--bg2);border-radius:8px;min-width:34px;min-height:34px;font-size:14px}
+.empty{color:var(--mute);font-size:13px;text-align:center;padding:20px 6px;border:1px dashed var(--line);border-radius:10px}
+.crmstats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+.crmstats div{background:var(--card);padding:12px 14px}
+.crmstats b{display:block;font:700 20px Manrope,sans-serif;white-space:nowrap}.crmstats span{font-size:12px;color:var(--mute)}
+dialog{border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);padding:22px;width:min(420px,92vw)}
+dialog::backdrop{background:rgb(0 0 0/.45)}
+/* Desk */
+.desk{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);min-height:520px}
+.tlist{border-right:1px solid var(--line);display:flex;flex-direction:column}
+.tabs{display:flex;gap:4px;padding:10px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{border:0;background:none;padding:8px 12px;border-radius:8px;min-height:40px;font-weight:500;font-size:14px;white-space:nowrap}
+.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.tickets{overflow-y:auto;max-height:520px}
+.tk{display:grid;gap:3px;padding:12px 14px;border-bottom:1px solid var(--line);cursor:pointer;width:100%;text-align:left;background:none;border-left:3px solid transparent;border-top:0;border-right:0}
+.tk[aria-selected=true]{background:var(--bg2);border-left-color:var(--acc)}
+.tk .a{display:flex;justify-content:space-between;gap:8px;font-weight:600;font-size:14px}
+.tk .a time{font-weight:400;color:var(--mute);font-size:12px;white-space:nowrap}
+.tk .s{font-size:13px;color:var(--mute);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.conv{display:flex;flex-direction:column;min-height:520px}
+.chead{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+.chead h3{margin:0}
+.chead select{min-height:40px;border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:6px 10px;font-size:15px}
+.msgs{flex:1;padding:16px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;max-height:380px}
+.m{max-width:80%;padding:10px 14px;border-radius:14px;font-size:15px;background:var(--bg2)}
+.m small{display:block;font-size:12px;color:var(--mute);margin-bottom:2px}
+.m.me{align-self:flex-end;background:color-mix(in srgb,var(--acc2) 14%,var(--card))}
+.m.note{align-self:center;background:color-mix(in srgb,var(--warn) 14%,var(--card));font-size:13px}
+.reply{border-top:1px solid var(--line);padding:12px;display:grid;gap:8px}
+.reply textarea{width:100%;min-height:76px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--bg);resize:vertical;font-size:16px}
+.canned{display:flex;gap:6px;flex-wrap:wrap}
+.canned button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:13px;min-height:36px}
+/* contact */
+.cgrid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(20px,4vw,48px);align-items:start}
+form.f{display:grid;gap:14px}
+.fl{display:grid;gap:6px}
+.fl label{font-weight:600;font-size:14px}
+.fl input,.fl select,.fl textarea{min-height:48px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:16px}
+.fl textarea{min-height:120px;resize:vertical}
+.fl .err{color:var(--acc);font-size:13px;min-height:1em}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg label{display:flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;min-height:44px;font-weight:500;cursor:pointer;background:var(--card)}
+.seg input{accent-color:var(--acc);width:18px;height:18px}
+.seg label:has(input:checked){border-color:var(--acc);background:color-mix(in srgb,var(--acc) 8%,var(--card))}
+.ok{padding:16px;border-radius:12px;background:color-mix(in srgb,var(--ok) 12%,var(--card));border:1px solid color-mix(in srgb,var(--ok) 40%,transparent)}
+.lead-row{display:grid;gap:2px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+/* bot */
+.fab{position:fixed;right:18px;bottom:18px;z-index:60;height:56px;padding:0 20px 0 16px;border-radius:999px;border:0;background:var(--acc);color:#fff;box-shadow:0 10px 28px -8px rgb(31 79 216/.55);display:flex;align-items:center;gap:8px;font-weight:600}
+.fab svg{width:24px;height:24px}
+.bot{position:fixed;right:18px;bottom:92px;z-index:60;width:min(380px,calc(100vw - 24px));height:min(540px,calc(100vh - 120px));display:none;flex-direction:column}
+.bot.open{display:flex}
+.bot .bar{justify-content:space-between;color:var(--ink);font-weight:600}
+.bot .bar button{border:0;background:none;min-width:40px;min-height:40px;font-size:20px}
+.bmsgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.bmsgs .m{max-width:88%;white-space:pre-wrap}
+.bsug{display:flex;gap:6px;flex-wrap:wrap;padding:0 14px 8px}
+.bsug button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:13px;min-height:36px}
+.bform{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.bform input{flex:1;min-height:44px;border:1px solid var(--line);border-radius:12px;padding:8px 12px;background:var(--bg);font-size:16px}
+footer{border-top:1px solid var(--line);background:var(--bg2)}
+.fcols{display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));gap:24px}
+.fcols h4{font:700 14px Manrope,sans-serif;margin:0 0 10px}.fcols a{display:block;text-decoration:none;color:var(--mute);padding:4px 0;font-size:14px}.fcols a:hover{color:var(--acc)}.fcols .brand{display:flex;color:var(--ink);font-size:19px}
+.fbot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
+.case{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:18px}
+.case>div{padding:22px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.case h3{font-size:13px;font-weight:700;color:var(--acc);margin-bottom:8px}
+.case ul{margin:0;padding-left:18px;color:var(--mute)}.case li{margin:4px 0}
+.tech{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.view{display:none}.view.on{display:block;animation:rise .45s ease}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:900px){.fcols{grid-template-columns:repeat(2,minmax(0,1fr))}.navcta{display:none}.hero,.cgrid{grid-template-columns:minmax(0,1fr)}.desk{grid-template-columns:minmax(0,1fr)}.tlist{border-right:0;border-bottom:1px solid var(--line)}.tickets{max-height:260px}.crmstats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.stack3{min-height:380px}.stack3 .win{width:90%}.stack3 .w3{left:4%;top:180px}.devices{grid-template-columns:minmax(0,1fr)}.phone{display:none}.two{grid-template-columns:minmax(0,1fr)}.mrow{grid-template-columns:7em minmax(0,1fr) 3em}.links a{padding:8px 10px;font-size:14px}.m{max-width:92%}}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a class="brand" href="#home"><i>S</i><span id="brandName">Studio</span></a>
+  <div class="links" id="links">
+    <a href="#home">Home</a><a href="#web">Web design</a><a href="#crm">CRM</a><a href="#desk">Help desk</a><a href="#contact">Contact</a>
+  </div>
+  <a class="btn p navcta" href="#contact">Book a demo</a>
+</div></nav>
+
+<main>
+<!-- HOME -->
+<section class="view" id="v-home">
+  <div class="band"><div class="wrap hero">
+    <div>
+      <div class="kick"><b></b>Web design · CRM · Help desk</div>
+      <h1>Websites and business software, designed and built end to end.</h1>
+      <p class="lead">I help businesses win customers and support them well: a fast website to attract leads, a CRM to close them and a help desk to keep them happy. All three run live on this site.</p>
+      <div class="row"><a class="btn p" href="#contact">Start a project</a><a class="btn" href="#crm">View live demos</a></div>
+      <div class="trust"><span><b>3</b> products built</span><span><b>100%</b> responsive</span><span><b>HTML · CSS · JS</b> stack</span></div>
+    </div>
+    <div class="stack3">
+      <div class="win w1"><div class="bar"><s></s><s></s><s></s><span>brightbrew.coffee</span></div><img src="images/site-coffee.jpg" alt="Brightbrew coffee website design" loading="eager"></div>
+      <div class="win w2"><div class="bar"><s></s><s></s><s></s><span>CRM · Pipeline</span></div><img src="images/crm.jpg" alt="CRM sales pipeline screen"></div>
+      <div class="win w3"><div class="bar"><s></s><s></s><s></s><span>Help desk · Inbox</span></div><img src="images/desk.jpg" alt="Help desk inbox screen"></div>
+    </div>
+  </div></div>
+  <div class="band alt"><div class="wrap">
+    <h2>Services</h2><p class="mute" style="margin-top:-6px;margin-bottom:22px">One partner from first visit to support ticket.</p>
+    <div class="grid3">
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg></div>
+        <h3>Website design</h3><p class="mute">Fast, responsive sites and landing pages: layout, branding, animations and forms that actually reach you.</p><a class="more" href="#web">See the web work →</a></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h4v14H4zM10 5h4v9h-4zM16 5h4v6h-4z"/></svg></div>
+        <h3>CRM</h3><p class="mute">Track leads through a drag-and-drop pipeline, see deal value per stage and your win rate at a glance.</p><a class="more" href="#crm">Try the pipeline →</a></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 10h8"/></svg></div>
+        <h3>Help desk</h3><p class="mute">A shared inbox for support: tickets, statuses, priorities, canned replies and AI-suggested answers.</p><a class="more" href="#desk">Open the inbox →</a></div>
+    </div>
+  </div></div>
+  <div class="band dark"><div class="wrap hero" style="grid-template-columns:minmax(0,1fr) auto">
+    <div><h2>Ready to discuss your project?</h2><p class="mute">Ask the AI assistant about services and timelines, or send an enquiry and I'll reply with next steps.</p></div>
+    <div class="row"><a class="btn p" href="#contact">Start a project</a><button class="btn" type="button" data-openbot>Ask the AI</button></div>
+  </div></div>
+</section>
+
+<!-- WEB -->
+<section class="view" id="v-web">
+  <div class="band"><div class="wrap">
+    <div class="kick"><b></b>Website design and development</div>
+    <h1>Websites that look sharp on every screen.</h1>
+    <p class="lead">Pick a brand colour and watch the same design re-theme on desktop and phone. Everything here is HTML, CSS and JavaScript, no page builders.</p>
+    <div class="devices" style="margin-top:22px">
+      <div class="win"><div class="bar"><s></s><s></s><s></s><span id="siteUrl">brightbrew.coffee</span></div>
+        <div class="site" id="siteD"><div class="sh"><span class="small" id="siteTag">Coffee roasters · Est. 2019</span><h3 id="siteH">Fresh coffee, delivered weekly.</h3><div><span class="btn" style="background:#fff;color:#121212;border:0;min-height:38px">Shop beans</span></div></div>
+        <div class="sb"><div></div><div></div><div></div></div></div></div>
+      <div class="phone site" id="siteM"><div class="sh"><span class="small" id="siteTag2">Coffee roasters</span><h3 id="siteH2">Fresh coffee, delivered weekly.</h3></div>
+        <div class="sb" style="grid-template-columns:1fr"><div style="height:44px"></div><div style="height:44px"></div></div></div>
+    </div>
+    <div class="row" style="margin-top:14px;justify-content:space-between">
+      <div class="picker" id="picker" aria-label="Brand colour"></div>
+      <div class="picker" id="templates" aria-label="Sample business"></div>
+    </div>
+  </div></div>
+  <div class="band"><div class="wrap">
+    <h2>Recent website designs</h2><p class="mute">Landing pages designed and coded for three kinds of business.</p>
+    <div class="gallery">
+      <figure><img src="images/site-coffee.jpg" alt="Brightbrew coffee subscription website" loading="lazy"><figcaption><b>Brightbrew</b><span class="mute small">Coffee subscription · E-commerce landing page</span></figcaption></figure>
+      <figure><img src="images/site-gym.jpg" alt="Pulse Gym fitness website" loading="lazy"><figcaption><b>Pulse Gym</b><span class="mute small">Fitness club · Dark theme, class booking</span></figcaption></figure>
+      <figure><img src="images/site-clinic.jpg" alt="CarePoint clinic website" loading="lazy"><figcaption><b>CarePoint</b><span class="mute small">Family clinic · Appointment booking</span></figcaption></figure>
+    </div>
+    <p class="small mute">Concept designs.</p>
+  </div></div>
+  <div class="band alt"><div class="wrap">
+    <div class="hero" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start">
+      <div><h2>How a site gets made</h2>
+        <div class="process">
+          <div><h3>1. Discover</h3><p class="mute small">Goals, audience and the pages you really need.</p></div>
+          <div><h3>2. Design</h3><p class="mute small">Wireframes, then a full visual design you approve.</p></div>
+          <div><h3>3. Build</h3><p class="mute small">Responsive code, forms, SEO basics and speed tuning.</p></div>
+          <div><h3>4. Launch</h3><p class="mute small">Domain, hosting, analytics and a handover walkthrough.</p></div>
+        </div></div>
+      <div><h2>Skills</h2><div id="skills"></div><p class="small mute">Self-assessed proficiency.</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- CRM -->
+<section class="view" id="v-crm">
+  <div class="band"><div class="wrap">
+    <div class="kick"><b></b>CRM · Live demo</div>
+    <h1>Every lead, every deal, one board.</h1>
+    <p class="lead">Drag a deal to another stage (or tap the arrow on a phone). Totals and win rate update as you go. Sample data.</p>
+  </div></div>
+  <div class="band" style="padding-top:0"><div class="wrap win">
+    <div class="bar"><s></s><s></s><s></s><span>CRM · Sales pipeline</span></div>
+    <div class="crmstats" id="crmStats"></div>
+    <div class="tools">
+      <input id="crmQ" type="search" placeholder="Search deals or contacts" aria-label="Search deals">
+      <select id="crmOwner" aria-label="Owner"><option value="">All owners</option><option>Priya</option><option>Sam</option><option>Leo</option></select>
+      <button class="btn p" type="button" id="addDeal">+ New deal</button>
+      <button class="btn" type="button" id="resetCrm">Reset</button>
+    </div>
+    <div class="board" id="board"></div>
+  </div></div>
+  <div class="band alt"><div class="wrap"><h2>Case study: sales CRM</h2><div class="case">
+    <div><h3>Challenge</h3><p class="mute">Leads scattered across spreadsheets, email and chat, with no view of what was about to close.</p></div>
+    <div><h3>Solution</h3><ul><li>Visual pipeline with drag-and-drop stages</li><li>Owners, contacts and deal values per card</li><li>Live open value, won value and win rate</li><li>Website enquiries arrive as new leads</li></ul></div>
+    <div><h3>Built with</h3><div class="tech"><span class="chip">HTML5</span><span class="chip">CSS Grid</span><span class="chip">JavaScript</span><span class="chip">Drag and drop API</span><span class="chip">Local storage</span></div></div>
+  </div></div></div>
+  <dialog id="dealDlg"><form method="dialog" class="f" id="dealForm">
+    <h3>New deal</h3>
+    <div class="fl"><label for="dName">Company</label><input id="dName" required></div>
+    <div class="fl"><label for="dContact">Contact</label><input id="dContact" required></div>
+    <div class="two"><div class="fl"><label for="dVal">Value ($)</label><input id="dVal" type="number" min="0" step="100" value="2500" required></div>
+    <div class="fl"><label for="dOwn">Owner</label><select id="dOwn"><option>Priya</option><option>Sam</option><option>Leo</option></select></div></div>
+    <div class="row"><button class="btn p" value="ok">Add deal</button><button class="btn" value="cancel" formnovalidate>Cancel</button></div>
+  </form></dialog>
+</section>
+
+<!-- DESK -->
+<section class="view" id="v-desk">
+  <div class="band"><div class="wrap">
+    <div class="kick"><b></b>Help desk · Live demo</div>
+    <h1>A support inbox your team will actually enjoy.</h1>
+    <p class="lead">Open a ticket, change its status, reply with a canned answer or let the AI draft one. Built in the style of Libredesk. Sample data.</p>
+  </div></div>
+  <div class="band" style="padding-top:0"><div class="wrap win">
+    <div class="bar"><s></s><s></s><s></s><span>Help desk · Shared inbox</span></div>
+    <div class="desk">
+      <div class="tlist">
+        <div class="tabs" id="tTabs"></div>
+        <div class="tickets" id="tickets" role="listbox" aria-label="Tickets"></div>
+      </div>
+      <div class="conv" id="conv"></div>
+    </div>
+  </div></div>
+  <div class="band alt"><div class="wrap"><h2>Case study: help desk</h2><div class="case">
+    <div><h3>Challenge</h3><p class="mute">Support requests lost in a shared mailbox, with no owner, priority or record of the answer.</p></div>
+    <div><h3>Solution</h3><ul><li>Open, pending and resolved queues</li><li>Priority, assignee and ticket numbers</li><li>Canned replies and private team notes</li><li>AI-drafted replies, edited before sending</li></ul></div>
+    <div><h3>Built with</h3><div class="tech"><span class="chip">HTML5</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">AI API</span><span class="chip">Responsive layout</span></div></div>
+  </div></div></div>
+</section>
+
+<!-- CONTACT -->
+<section class="view" id="v-contact">
+  <div class="band"><div class="wrap cgrid">
+    <div>
+      <div class="kick"><b></b>Contact</div>
+      <h1>Tell me about your project.</h1>
+      <p class="lead">Share a few details and I'll respond within one business day with questions and a proposed plan.</p>
+      <form class="f" id="cform" novalidate>
+        <div class="two">
+          <div class="fl"><label for="cName">Name</label><input id="cName" autocomplete="name"><span class="err" id="eName"></span></div>
+          <div class="fl"><label for="cEmail">Email</label><input id="cEmail" type="email" autocomplete="email"><span class="err" id="eEmail"></span></div>
+        </div>
+        <div class="fl"><label for="cPhone">Phone (optional)</label><input id="cPhone" type="tel" autocomplete="tel"></div>
+        <div class="fl"><span style="font-weight:600;font-size:14px">I'm interested in</span>
+          <div class="seg">
+            <label><input type="checkbox" name="int" value="Website" checked>Website</label>
+            <label><input type="checkbox" name="int" value="CRM">CRM</label>
+            <label><input type="checkbox" name="int" value="Help desk">Help desk</label>
+          </div></div>
+        <div class="fl"><label for="cBudget">Budget</label><select id="cBudget"><option>Not sure yet</option><option>Under $1,000</option><option>$1,000 – $5,000</option><option>$5,000+</option></select></div>
+        <div class="fl"><label for="cMsg">Project details</label><textarea id="cMsg" placeholder="What are you building, and by when?"></textarea><span class="err" id="eMsg"></span></div>
+        <div class="row"><button class="btn p" type="submit" id="cSend">Send enquiry</button><span class="small mute" id="cNote"></span></div>
+      </form>
+      <div class="ok" id="cOk" hidden></div>
+    </div>
+    <div>
+      <div class="win"><div class="bar"><s></s><s></s><s></s><span>Enquiries received</span></div>
+        <div style="padding:6px 16px 14px" id="leads"><p class="mute small" style="margin-top:12px">Submitted enquiries appear here and as new leads in the CRM.</p></div></div>
+      <div class="card" style="margin-top:18px"><h3>Prefer to chat?</h3><p class="mute">The AI assistant can answer questions about services, timelines and how the CRM and help desk work.</p><button class="btn k" type="button" data-openbot>Ask the AI assistant</button></div>
+    </div>
+  </div></div>
+</section>
+</main>
+
+<footer class="band"><div class="wrap">
+  <div class="fcols">
+    <div><a class="brand" href="#home" style="margin-bottom:10px"><i>S</i><span id="footName">Studio</span></a><p class="mute small" style="max-width:34ch">Websites, CRM and help desk software for growing businesses.</p></div>
+    <div><h4>Work</h4><a href="#web">Web design</a><a href="#crm">CRM</a><a href="#desk">Help desk</a></div>
+    <div><h4>Company</h4><a href="#home">Home</a><a href="#contact">Contact</a></div>
+    <div><h4>Get in touch</h4><a href="#contact">Send an enquiry</a><span class="mute small" id="footMail"></span></div>
+  </div>
+  <div class="fbot"><span>© <span id="yr"></span> <span id="footName2">Studio</span>. All rights reserved.</span><span>Built with HTML, CSS and JavaScript</span></div>
+</div></footer>
+
+<button class="fab" id="fab" type="button" aria-label="Open AI assistant" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"/><path d="M9 10h.01M12 10h.01M15 10h.01" stroke-linecap="round" stroke-width="3"/></svg><span>Ask AI</span>
+</button>
+<div class="bot win" id="bot" role="dialog" aria-label="AI assistant">
+  <div class="bar"><span>AI assistant <span class="chip g" id="botMode">online</span></span><button type="button" id="botX" aria-label="Close">×</button></div>
+  <div class="bmsgs" id="bmsgs"></div>
+  <div class="bsug" id="bsug"></div>
+  <form class="bform" id="bform"><input id="bq" placeholder="Ask about my work…" aria-label="Message" autocomplete="off"><button class="btn p" type="submit">Send</button></form>
+</div>
+
+<script>
+{
+/* ===== Edit these to make it yours ===== */
+const CONFIG={
+  name:"Studio",               // your name or studio name
+  email:"hello@example.com",   // shown after a form is sent
+  formEndpoint:""              // optional: a Formspree/Web3Forms URL if you host this file yourself
+};
+/* ======================================= */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>'$'+Math.round(n).toLocaleString('en-US');
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+$('#brandName').textContent=CONFIG.name;$('#footName').textContent=CONFIG.name;$('#footName2').textContent=CONFIG.name;$('#footMail').textContent=CONFIG.email;$('#yr').textContent=new Date().getFullYear();$$('.brand i').forEach(i=>i.textContent=CONFIG.name[0]||'S');
+
+/* routing */
+const views=['home','web','crm','desk','contact'];
+function route(){const h=location.hash.slice(1);const v=views.includes(h)?h:'home';
+  for(const x of views)$('#v-'+x).classList.toggle('on',x===v);
+  $$('#links a').forEach(a=>{if(a.getAttribute('href')==='#'+v)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  if(views.includes(h))window.scrollTo(0,0)}
+addEventListener('hashchange',route);route();
+
+/* web page */
+const colors=['#1f4fd8','#0e7490','#0f766e','#7c2d12','#0f172a','#9d174d'];
+const temps=[{n:'Coffee',u:'brightbrew.coffee',t:'Coffee roasters · Est. 2019',h:'Fresh coffee, delivered weekly.'},
+ {n:'Fitness',u:'pulsegym.fit',t:'Gym and personal training',h:'Train smarter, not longer.'},
+ {n:'Clinic',u:'carepoint.health',t:'Family clinic',h:'Book a doctor in two minutes.'}];
+let col=colors[0];
+const paint=()=>{for(const s of ['#siteD','#siteM'])$(s).style.setProperty('--t',col);
+  $$('#picker .sw').forEach(b=>b.setAttribute('aria-pressed',b.dataset.c===col))};
+$('#picker').innerHTML=colors.map(c=>`<button class="sw" type="button" data-c="${c}" style="background:${c}" aria-label="Colour ${c}"></button>`).join('');
+$('#picker').addEventListener('click',e=>{const b=e.target.closest('.sw');if(b){col=b.dataset.c;paint()}});
+$('#templates').innerHTML=temps.map((t,i)=>`<button class="btn" type="button" data-i="${i}">${t.n}</button>`).join('');
+$('#templates').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const t=temps[b.dataset.i];
+  $('#siteUrl').textContent=t.u;$('#siteTag').textContent=t.t;$('#siteTag2').textContent=t.t.split(' ·')[0];$('#siteH').textContent=t.h;$('#siteH2').textContent=t.h});
+paint();
+const skills=[['HTML & CSS',95],['JavaScript',88],['Responsive design',92],['UI / UX design',85],['APIs & backends',78],['Databases',75]];
+$('#skills').innerHTML=skills.map(([n,v])=>`<div class="mrow"><span>${n}</span><div class="meter"><i style="width:${v}%"></i></div><em>${v}%</em></div>`).join('');
+
+/* CRM */
+const stages=['Lead','Contacted','Proposal','Won'];
+const seed=[{id:1,c:'Acme Co',p:'Jordan Lee',v:4200,s:'Lead',o:'Priya'},{id:2,c:'Nova Foods',p:'Maya Chen',v:8600,s:'Proposal',o:'Sam'},
+ {id:3,c:'Brightline',p:'Omar Aziz',v:12500,s:'Won',o:'Leo'},{id:4,c:'Urban Nest',p:'Sara Kim',v:3100,s:'Contacted',o:'Priya'},
+ {id:5,c:'Peak Dental',p:'Dr. Ravi Shah',v:5400,s:'Lead',o:'Sam'},{id:6,c:'Greenleaf Café',p:'Ana Silva',v:1900,s:'Won',o:'Priya'},
+ {id:7,c:'Atlas Logistics',p:'Tom Berg',v:15800,s:'Proposal',o:'Leo'},{id:8,c:'Kite Studio',p:'Ella Moss',v:2700,s:'Contacted',o:'Sam'}];
+let deals=store.get('crm',null)||structuredClone(seed);
+const save=()=>store.set('crm',deals);
+function drawCrm(){const q=$('#crmQ').value.toLowerCase(),o=$('#crmOwner').value;
+  const vis=deals.filter(d=>(!o||d.o===o)&&(d.c+' '+d.p).toLowerCase().includes(q));
+  $('#board').innerHTML=stages.map((s,si)=>{const L=vis.filter(d=>d.s===s);const sum=L.reduce((a,d)=>a+d.v,0);
+    return `<div class="col" data-s="${s}"><h4>${s} <span>${L.length} · ${money(sum)}</span></h4>${L.map(d=>`<div class="deal" draggable="true" data-id="${d.id}">
+      <div class="t"><span>${esc(d.c)}</span><em>${money(d.v)}</em></div><div class="mute small">${esc(d.p)}</div>
+      <div class="f"><span>${esc(d.o)}</span><span>${si>0?`<button type="button" data-mv="-1" aria-label="Move back">←</button>`:''} ${si<3?`<button type="button" data-mv="1" aria-label="Move forward">→</button>`:''}</span></div></div>`).join('')||'<div class="empty">Drop a deal here</div>'}</div>`}).join('');
+  const open=deals.filter(d=>d.s!=='Won').reduce((a,d)=>a+d.v,0),won=deals.filter(d=>d.s==='Won');
+  $('#crmStats').innerHTML=[[deals.length,'Total deals'],[money(open),'Open pipeline'],[money(won.reduce((a,d)=>a+d.v,0)),'Won'],[Math.round(won.length/Math.max(1,deals.length)*100)+'%','Win rate']]
+    .map(([b,s])=>`<div><b>${b}</b><span>${s}</span></div>`).join('')}
+const move=(id,s)=>{const d=deals.find(x=>x.id==id);if(d&&s){d.s=s;save();drawCrm()}};
+$('#board').addEventListener('dragstart',e=>{const d=e.target.closest('.deal');if(d)e.dataTransfer.setData('text/plain',d.dataset.id)});
+$('#board').addEventListener('dragover',e=>{const c=e.target.closest('.col');if(c){e.preventDefault();$$('.col').forEach(x=>x.classList.toggle('over',x===c))}});
+$('#board').addEventListener('dragleave',e=>{if(!e.relatedTarget||!e.relatedTarget.closest?.('.col'))$$('.col').forEach(x=>x.classList.remove('over'))});
+$('#board').addEventListener('drop',e=>{const c=e.target.closest('.col');if(!c)return;e.preventDefault();$$('.col').forEach(x=>x.classList.remove('over'));move(e.dataTransfer.getData('text/plain'),c.dataset.s)});
+$('#board').addEventListener('click',e=>{const b=e.target.closest('[data-mv]');if(!b)return;const d=deals.find(x=>x.id==b.closest('.deal').dataset.id);
+  move(d.id,stages[stages.indexOf(d.s)+ +b.dataset.mv])});
+$('#crmQ').addEventListener('input',drawCrm);$('#crmOwner').addEventListener('change',drawCrm);
+$('#addDeal').addEventListener('click',()=>{$('#dealForm').reset();$('#dealDlg').showModal()});
+$('#dealDlg').addEventListener('close',()=>{if($('#dealDlg').returnValue!=='ok')return;
+  deals.push({id:Date.now(),c:$('#dName').value.trim(),p:$('#dContact').value.trim(),v:+$('#dVal').value||0,s:'Lead',o:$('#dOwn').value});save();drawCrm()});
+$('#resetCrm').addEventListener('click',()=>{deals=structuredClone(seed);save();drawCrm()});
+drawCrm();
+
+/* Help desk */
+const now=Date.now(),mins=m=>now-m*60000;
+const tseed=[
+ {id:101,n:'Maya Chen',sub:'Order not received',st:'Open',pr:'High',as:'Priya',m:[{f:'Maya Chen',t:'Hi, I ordered on Monday (order #4821) and it still says processing. Can you check?',at:mins(18)}]},
+ {id:102,n:'Jordan Lee',sub:'How do I reset my password?',st:'Open',pr:'Low',as:'Sam',m:[{f:'Jordan Lee',t:'The reset email never arrives. I checked spam too.',at:mins(42)}]},
+ {id:103,n:'Omar Aziz',sub:'Invoice shows wrong company name',st:'Pending',pr:'Medium',as:'Leo',m:[{f:'Omar Aziz',t:'Our invoice says Brightline Ltd, it should be Brightline Group.',at:mins(190)},{f:'Leo',me:1,t:'Thanks Omar, I have asked billing to reissue it. You will have it by tomorrow.',at:mins(170)}]},
+ {id:104,n:'Sara Kim',sub:'Feature request: dark mode',st:'Resolved',pr:'Low',as:'Priya',m:[{f:'Sara Kim',t:'Would love a dark mode for the dashboard!',at:mins(1500)},{f:'Priya',me:1,t:'Good news, dark mode shipped today. Toggle it under Settings → Appearance.',at:mins(1440)}]},
+ {id:105,n:'Tom Berg',sub:'App crashes on upload',st:'Open',pr:'Urgent',as:'Unassigned',m:[{f:'Tom Berg',t:'Uploading a PDF over 10 MB crashes the app every time. This is blocking our team.',at:mins(6)}]}];
+let tickets=store.get('desk',null)||structuredClone(tseed),tab='Open',sel=null;
+const saveT=()=>store.set('desk',tickets);
+const ago=t=>{const m=Math.round((Date.now()-t)/60000);return m<1?'now':m<60?m+'m':m<1440?Math.round(m/60)+'h':Math.round(m/1440)+'d'};
+const prc={Urgent:'o',High:'o',Medium:'y',Low:'b'},stc={Open:'o',Pending:'y',Resolved:'g'};
+const canned=['Thanks for reaching out! Looking into this now.','Could you share a screenshot so we can reproduce it?','This is fixed now. Let us know if anything else comes up.'];
+function drawDesk(){
+  $('#tTabs').innerHTML=['Open','Pending','Resolved','All'].map(t=>`<button type="button" data-t="${t}" aria-pressed="${t===tab}">${t} ${t==='All'?tickets.length:tickets.filter(x=>x.st===t).length}</button>`).join('');
+  const L=tickets.filter(x=>tab==='All'||x.st===tab).sort((a,b)=>b.m.at(-1).at-a.m.at(-1).at);
+  if(!L.find(x=>x.id===sel))sel=L[0]?.id??null;
+  $('#tickets').innerHTML=L.map(x=>`<button type="button" class="tk" role="option" data-id="${x.id}" aria-selected="${x.id===sel}">
+    <span class="a"><span>${esc(x.n)}</span><time>${ago(x.m.at(-1).at)}</time></span><span>${esc(x.sub)}</span>
+    <span class="s">${esc(x.m.at(-1).t)}</span><span class="chips"><span class="chip ${prc[x.pr]}">${x.pr}</span><span class="chip">#${x.id}</span></span></button>`).join('')||'<div class="empty" style="margin:14px">No tickets in this queue.</div>';
+  const t=tickets.find(x=>x.id===sel);
+  if(!t){$('#conv').innerHTML='<div class="empty" style="margin:16px">Select a ticket</div>';return}
+  $('#conv').innerHTML=`<div class="chead"><div><h3>${esc(t.sub)}</h3><span class="small mute">#${t.id} · ${esc(t.n)}</span></div>
+    <div class="row"><select id="tSt" aria-label="Status">${['Open','Pending','Resolved'].map(s=>`<option ${s===t.st?'selected':''}>${s}</option>`).join('')}</select>
+    <select id="tPr" aria-label="Priority">${['Urgent','High','Medium','Low'].map(s=>`<option ${s===t.pr?'selected':''}>${s}</option>`).join('')}</select>
+    <select id="tAs" aria-label="Assignee">${['Unassigned','Priya','Sam','Leo'].map(s=>`<option ${s===t.as?'selected':''}>${s}</option>`).join('')}</select></div></div>
+    <div class="msgs" id="tMsgs">${t.m.map(m=>`<div class="m ${m.note?'note':m.me?'me':''}"><small>${esc(m.f)}${m.note?' · private note':''} · ${ago(m.at)}</small>${esc(m.t)}</div>`).join('')}</div>
+    <div class="reply"><div class="canned">${canned.map((c,i)=>`<button type="button" data-c="${i}">${esc(c.slice(0,28))}…</button>`).join('')}<button type="button" id="aiDraft">Draft with AI</button></div>
+    <textarea id="tTxt" placeholder="Write a reply…" aria-label="Reply"></textarea>
+    <div class="row" style="justify-content:space-between"><label class="small row" style="gap:6px"><input type="checkbox" id="tNote">Private note</label>
+    <div class="row"><button class="btn" type="button" id="tSolve">Send and resolve</button><button class="btn p" type="button" id="tSend">Send</button></div></div></div>`;
+  const ms=$('#tMsgs');ms.scrollTop=ms.scrollHeight}
+$('#tTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b){tab=b.dataset.t;sel=null;drawDesk()}});
+$('#tickets').addEventListener('click',e=>{const b=e.target.closest('.tk');if(b){sel=+b.dataset.id;drawDesk()}});
+$('#conv').addEventListener('change',e=>{const t=tickets.find(x=>x.id===sel);if(!t)return;
+  if(e.target.id==='tSt')t.st=e.target.value;if(e.target.id==='tPr')t.pr=e.target.value;if(e.target.id==='tAs')t.as=e.target.value;
+  if(e.target.id.match(/^t(St|Pr|As)$/)){saveT();drawDesk()}});
+function send(resolve){const t=tickets.find(x=>x.id===sel),txt=$('#tTxt').value.trim();if(!t||!txt)return;
+  const note=$('#tNote').checked;t.m.push({f:t.as==='Unassigned'?'You':t.as,me:1,note,t:txt,at:Date.now()});
+  if(resolve)t.st='Resolved';else if(!note&&t.st==='Open')t.st='Pending';saveT();drawDesk()}
+$('#conv').addEventListener('click',async e=>{
+  const c=e.target.closest('[data-c]');if(c){$('#tTxt').value=canned[c.dataset.c];$('#tTxt').focus();return}
+  if(e.target.id==='tSend')send(false);if(e.target.id==='tSolve')send(true);
+  if(e.target.id==='aiDraft'){const t=tickets.find(x=>x.id===sel),ta=$('#tTxt'),b=e.target;
+    let S=null;try{S=window.claude?.use?await claude.use('sample'):null}catch(err){}
+    if(!S){ta.value=`Hi ${t.n.split(' ')[0]}, thanks for getting in touch about "${t.sub}". I'm on it and will update you within the hour.`;return}
+    b.disabled=true;ta.value='Thinking…';
+    try{await S(`You are a friendly support agent. Write a short, helpful reply (2-4 sentences, plain text, no subject line, sign as "Support team") to this help desk ticket.\nSubject: ${t.sub}\nConversation:\n${t.m.map(m=>m.f+': '+m.t).join('\n')}`,{modelTier:'quick',cache:false,onText:({text})=>{ta.value=text}})}
+    catch(err){ta.value=`Hi ${t.n.split(' ')[0]}, thanks for your message. We're looking into it and will get back to you shortly.`}
+    b.disabled=false}});
+drawDesk();
+
+/* Contact form + submissions */
+let db=null;
+const showLeads=L=>{if(!L.length)return;$('#leads').innerHTML=L.map(l=>`<div class="lead-row"><b>${esc(l.name)} <span class="mute small">· ${esc(l.email)}</span></b>
+  <span class="chips">${(l.interest||[]).map(i=>`<span class="chip o">${esc(i)}</span>`).join('')}<span class="chip">${esc(l.budget)}</span></span><span class="mute">${esc(l.message)}</span></div>`).join('')};
+showLeads(store.get('leads',[]));
+(async()=>{try{if(!window.claude?.use)return;db=await claude.use('db');if(!db)return;
+  const tm=setTimeout(()=>{},10000);
+  db.collection('leads').orderBy('at','desc').limit(20).onSnapshot(s=>{clearTimeout(tm);const L=(s.docs||[]).map(d=>d.data?d.data():d);if(L.length)showLeads(L)},()=>clearTimeout(tm))}catch(e){db=null}})();
+$('#cform').addEventListener('submit',async e=>{e.preventDefault();
+  const v={name:$('#cName').value.trim(),email:$('#cEmail').value.trim(),phone:$('#cPhone').value.trim(),
+    interest:$$('input[name=int]:checked').map(i=>i.value),budget:$('#cBudget').value,message:$('#cMsg').value.trim(),at:Date.now()};
+  $('#eName').textContent=v.name?'':'Please enter your name';
+  $('#eEmail').textContent=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)?'':'Please enter a valid email';
+  $('#eMsg').textContent=v.message.length>=10?'':'Tell me a little more (10+ characters)';
+  if(!v.name||$('#eEmail').textContent||$('#eMsg').textContent)return;
+  const btn=$('#cSend');btn.disabled=true;btn.textContent='Sending…';let where='this device';
+  try{if(db){await db.collection('leads').doc('l'+v.at).set(v);where='the enquiries inbox'}
+    else if(CONFIG.formEndpoint){const r=await fetch(CONFIG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(v)});if(r.ok)where='my inbox'}}
+  catch(err){}
+  const L=store.get('leads',[]);L.unshift(v);store.set('leads',L.slice(0,20));if(!db)showLeads(L);
+  deals.unshift({id:v.at,c:v.name,p:v.email,v:0,s:'Lead',o:'Priya'});save();drawCrm();
+  tickets.unshift({id:200+tickets.length,n:v.name,sub:'New enquiry: '+(v.interest.join(', ')||'General'),st:'Open',pr:'High',as:'Unassigned',m:[{f:v.name,t:v.message,at:v.at}]});saveT();drawDesk();
+  $('#cform').hidden=true;const ok=$('#cOk');ok.hidden=false;
+  ok.innerHTML=`<h3>Thanks, ${esc(v.name.split(' ')[0])}!</h3><p>Your enquiry was saved to ${where}. It's also now a new lead in the <a href="#crm">CRM</a> and a ticket in the <a href="#desk">help desk</a>. You can also email ${esc(CONFIG.email)}.</p><button class="btn" type="button" id="cAgain">Send another</button>`;
+  btn.disabled=false;btn.textContent='Send enquiry'});
+$('#cOk').addEventListener('click',e=>{if(e.target.id==='cAgain'){$('#cform').reset();$('#cform').hidden=false;$('#cOk').hidden=true}});
+
+/* AI bot */
+const bot=$('#bot'),bm=$('#bmsgs');let hist=[],busy=false;
+const SYS=`You are the friendly AI assistant on the portfolio website of ${CONFIG.name}, a developer and designer presenting at an expo. They offer: 1) Website design and development (responsive HTML/CSS/JS sites, landing pages, forms, SEO basics; process: discover, design, build, launch). 2) A custom CRM (drag-and-drop sales pipeline with stages Lead, Contacted, Proposal, Won; contacts, owners, live pipeline value and win rate; website form leads flow in). 3) A help desk similar to Libredesk (shared inbox, ticket statuses Open/Pending/Resolved, priorities, assignees, canned replies, private notes, AI-drafted replies). The site has pages: Home, Web design, CRM, Help desk, Contact. Answer in 1-4 short sentences, plain text, no markdown. Don't invent prices, clients or deadlines; for quotes, suggest the Contact page form.`;
+const add=(t,me)=>{const d=document.createElement('div');d.className='m'+(me?' me':'');d.textContent=t;bm.appendChild(d);bm.scrollTop=bm.scrollHeight;return d};
+const sugs=['What services do you offer?','How does the CRM work?','Tell me about the help desk','How do I start a project?'];
+$('#bsug').innerHTML=sugs.map(s=>`<button type="button">${s}</button>`).join('');
+const local=q=>{q=q.toLowerCase();
+  if(/crm|lead|deal|pipeline|sales/.test(q))return 'The CRM tracks every deal on a drag-and-drop pipeline (Lead → Contacted → Proposal → Won), with owners, live pipeline value and win rate. Try it on the CRM page.';
+  if(/desk|ticket|support|libre|inbox/.test(q))return 'The help desk is a shared support inbox like Libredesk: tickets with status, priority and assignee, canned replies, private notes and AI-drafted answers. Open the Help desk page to try it.';
+  if(/web|site|design|landing|responsive/.test(q))return 'I design and code responsive websites and landing pages in HTML, CSS and JavaScript, from discovery to launch. The Web design page shows a live re-theming demo.';
+  if(/price|cost|quote|budget|start|hire|contact/.test(q))return 'Every project is different, so the best start is the Contact page form. Tell me what you need and your budget range, and I will follow up.';
+  return 'I build three things: websites, a sales CRM and a help desk. Ask me about any of them, or use the Contact page to start a project.'};
+async function ask(q){if(busy||!q.trim())return;busy=true;add(q,1);hist.push({role:'user',content:q});const out=add('…');
+  let S=null;try{S=window.claude?.use?await claude.use('sample'):null}catch(e){}
+  let ans='';
+  if(S){try{const msgs=[{role:'user',content:SYS+'\n\nVisitor: '+hist[0].content},...hist.slice(1)];
+      const r=await S(msgs,{modelTier:'quick',cache:false,onText:({text})=>{out.textContent=text;bm.scrollTop=bm.scrollHeight}});ans=r.text}
+    catch(e){ans=local(q);$('#botMode').textContent='quick answers'}}
+  else{ans=local(q);$('#botMode').textContent='quick answers'}
+  out.textContent=ans;hist.push({role:'assistant',content:ans});busy=false}
+const openBot=o=>{bot.classList.toggle('open',o);$('#fab').setAttribute('aria-expanded',o);if(o){if(!bm.children.length)add(`Hi! I'm ${CONFIG.name}'s AI assistant. Ask me about websites, the CRM or the help desk.`);$('#bq').focus()}};
+$('#fab').addEventListener('click',()=>openBot(!bot.classList.contains('open')));
+$('#botX').addEventListener('click',()=>openBot(false));
+$$('[data-openbot]').forEach(b=>b.addEventListener('click',()=>openBot(true)));
+$('#bsug').addEventListener('click',e=>{const b=e.target.closest('button');if(b)ask(b.textContent)});
+$('#bform').addEventListener('submit',e=>{e.preventDefault();const q=$('#bq').value;$('#bq').value='';ask(q)});
+}
+</script>
+</body>
+</html>

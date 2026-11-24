@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aanya Rao Atelier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav id="nav">
+  <a class="logo" href="#top">Aanya Rao</a>
+  <ul id="links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#lookbook">Lookbook</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="menu" id="menu" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<header class="hero" id="top">
+  <div class="rv in">
+    <h1>Aanya <em>Rao</em></h1>
+    <p class="lede">Couture, bridal and ready-to-wear — hand-draped in Mumbai, made to move with the woman who wears it.</p>
+    <div class="btns">
+      <a class="btn fill" href="#lookbook">View lookbook</a>
+      <a class="btn ghost" href="#contact">Book a fitting</a>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="frame"><svg id="heroArt" viewBox="0 0 400 640" aria-hidden="true"></svg><img src="https://images.pexels.com/photos/19668292/pexels-photo-19668292.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Model in a pink silk saree standing in a meadow" fetchpriority="high" onerror="this.remove()"></div>
+    <span class="tag t1">Hand-embroidered silk</span>
+    <span class="tag t2">Autumn / Winter 2026</span>
+  </div>
+  <span class="scrollcue">Scroll ↓</span>
+</header>
+
+<div class="marq" aria-hidden="true"><div id="mq"></div></div>
+
+<section class="band" id="about">
+  <div class="wrap about">
+    <div class="portrait rv"><img src="https://images.pexels.com/photos/3984883/pexels-photo-3984883.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Fashion designer holding a sketchbook in her studio" loading="lazy" onerror="this.remove()"></div>
+    <div class="rv">
+      <span class="kicker">The designer</span>
+      <h2>Fabric first. Then the silhouette follows.</h2>
+      <p style="margin-top:22px">Aanya trained in textile design before she ever cut a pattern, and it shows. Every collection starts at the loom — with handwoven silks, zardozi embroidery and natural dyes sourced from artisan clusters across India.</p>
+      <p>Her studio blends that heritage with clean, modern tailoring: gowns that drape like water, structured jackets you can wear to a boardroom or a sangeet, and bridal pieces designed to be worn again.</p>
+      <div class="stats">
+        <div><b>12</b><span>Years designing</span></div>
+        <div><b>9</b><span>Collections</span></div>
+        <div><b>40+</b><span>Artisan partners</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band lb" id="lookbook">
+  <div class="wrap">
+    <div class="lbhead rv">
+      <div><span class="kicker">Lookbook</span><h2>Selected looks</h2></div>
+      <div class="filters" id="filters"></div>
+    </div>
+    <div class="strip" id="strip" tabindex="0" aria-label="Lookbook, use arrow keys to browse"></div>
+    <div class="arrows"><button id="prev" aria-label="Previous look">←</button><button id="next" aria-label="Next look">→</button></div>
+  </div>
+</section>
+
+<section class="band" id="services">
+  <div class="wrap">
+    <span class="kicker rv">Services</span>
+    <h2 class="rv">Made for you, from the first sketch</h2>
+    <div class="svc" id="svc"></div>
+  </div>
+</section>
+
+<section class="band proc" id="process">
+  <div class="wrap">
+    <h2 class="rv">How a piece comes to life</h2>
+    <div class="steps" id="steps"></div>
+  </div>
+</section>
+
+<section class="band" id="contact">
+  <div class="wrap contact">
+    <div class="rv">
+      <span class="kicker">Appointments</span>
+      <h2>Let’s create something unforgettable</h2>
+      <p style="margin-top:20px">Fittings are by appointment at the Bandra studio, or by video call worldwide. Tell us about your occasion and we’ll reply within two working days.</p>
+      <ul class="info">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Studio 4, Pali Hill, Bandra West, Mumbai</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:hello@aanyarao.studio">hello@aanyarao.studio</a></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Tue – Sat, 11am – 7pm</li>
+      </ul>
+      <p class="note">Designer name, address and details are sample content — replace with your client’s. Photos: Pexels.</p>
+    </div>
+    <form id="form" class="rv" novalidate>
+      <div class="row">
+        <label>Full name<input id="fname" required autocomplete="name"></label>
+        <label>Email<input id="femail" type="email" required autocomplete="email"></label>
+      </div>
+      <div class="row">
+        <label>Occasion<select id="focc"><option>Bridal</option><option>Couture / evening</option><option>Ready-to-wear</option><option>Styling session</option><option>Collaboration</option></select></label>
+        <label>Event date<input id="fdate" type="date"></label>
+      </div>
+      <label>Tell us about your vision<textarea id="fmsg" placeholder="Colours, fabrics, references you love…"></textarea></label>
+      <input type="checkbox" id="botcheck" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn" type="submit">Request appointment</button>
+      <div class="ok" id="ok" role="status"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <a class="logo" href="#top">Aanya Rao</a>
+  <span>© 2026 Aanya Rao Atelier · Mumbai</span>
+  <div class="soc"><a href="#contact" aria-label="Instagram">IG</a><a href="#contact" aria-label="Pinterest">PI</a><a href="#contact" aria-label="LinkedIn">IN</a></div>
+</footer>
+
+<!-- AI style assistant -->
+<button class="fab" id="chatFab" aria-label="Chat with the style assistant" aria-expanded="false" aria-controls="chat">
+  <svg class="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 01-11.6 7.1L4 20l1-4.6A8 8 0 1121 12z"/><path d="M12 8.5l.9 2 2.1.6-2.1.7-.9 2-.9-2-2.1-.7 2.1-.6z" fill="currentColor"/></svg>
+  <svg class="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+</button>
+<section class="chat" id="chat" role="dialog" aria-label="Style assistant">
+  <header class="chat-h">
+    <span class="av" aria-hidden="true">AR</span>
+    <div><b>Style assistant</b><small>AI · usually replies instantly</small></div>
+    <button id="chatClose" aria-label="Close chat">×</button>
+  </header>
+  <div class="chat-log" id="chatLog" aria-live="polite"></div>
+  <div class="chat-sugg" id="chatSugg">
+    <button type="button">How long does bridal take?</button>
+    <button type="button">What fabrics do you use?</button>
+    <button type="button">How do I book a fitting?</button>
+  </div>
+  <form class="chat-f" id="chatForm">
+    <input id="chatIn" placeholder="Ask about outfits, fittings…" autocomplete="off" maxlength="500" aria-label="Your message">
+    <button aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </form>
+</section>
+
+<div class="lbx" id="lbx" role="dialog" aria-modal="true" aria-labelledby="lbt">
+  <button class="x" id="lbclose" aria-label="Close">×</button>
+  <div class="box"><div class="pic" id="lbpic"></div><div class="txt" id="lbtxt"></div></div>
+</div>
+
+<script src="script.js" defer></script>
+</body>
+</html>
